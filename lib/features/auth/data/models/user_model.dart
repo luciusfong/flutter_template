@@ -1,4 +1,4 @@
-import 'package:my_login_app/features/auth/domain/entities/user.dart';
+import 'package:flutter_template/features/auth/domain/entities/user.dart';
 
 class UserModel extends User {
   const UserModel({

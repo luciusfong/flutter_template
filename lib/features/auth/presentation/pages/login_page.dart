@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:my_login_app/core/utils/validators.dart';
-import 'package:my_login_app/features/auth/presentation/bloc/auth_bloc.dart';
-import 'package:my_login_app/features/auth/presentation/bloc/auth_event.dart';
-import 'package:my_login_app/features/auth/presentation/bloc/auth_state.dart';
+import 'package:flutter_template/core/utils/validators.dart';
+import 'package:flutter_template/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:flutter_template/features/auth/presentation/bloc/auth_event.dart';
+import 'package:flutter_template/features/auth/presentation/bloc/auth_state.dart';
 
 class LoginPage extends StatefulWidget {
   @override

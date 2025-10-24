@@ -1,9 +1,9 @@
 import 'package:http/http.dart' as http;
-import 'package:my_login_app/core/constants/api_constants.dart';
-import 'package:my_login_app/core/errors/failures.dart';
+import 'package:flutter_template/core/constants/api_constants.dart';
+import 'package:flutter_template/core/errors/failures.dart';
 import 'dart:convert';
 
-import 'package:my_login_app/features/auth/data/models/user_model.dart';
+import 'package:flutter_template/features/auth/data/models/user_model.dart';
 
 abstract class AuthRemoteDataSource {
   Future<UserModel> login(String username, String password);
