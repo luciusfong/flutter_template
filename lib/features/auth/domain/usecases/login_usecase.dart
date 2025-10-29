@@ -1,7 +1,7 @@
 import 'package:flutter_template/core/errors/failures.dart';
 import 'package:flutter_template/features/auth/domain/entities/user.dart';
 import 'package:flutter_template/features/auth/domain/repositories/auth_repository.dart';
-import 'package:flutter_template/core/utils/validators.dart';
+import 'package:dartz/dartz.dart';
 
 class LoginUseCase {
   final AuthRepository repository;

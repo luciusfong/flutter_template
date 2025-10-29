@@ -2,15 +2,17 @@ import 'package:equatable/equatable.dart';
 
 class User extends Equatable {
   final int id;
-  final String name;
   final String username;
+  final String? name;
+  final String? accessToken;
 
   const User({
     required this.id,
-    required this.name,
     required this.username,
+    this.name,
+    this.accessToken,
   });
 
   @override
-  List<Object> get props => [id, name, username];
+  List<Object> get props => [id, username];
 }

@@ -1,35 +1,16 @@
-import 'package:http/http.dart' as http;
+import 'package:dio/dio.dart';
+import 'package:retrofit/retrofit.dart';
 import 'package:flutter_template/core/constants/api_constants.dart';
-import 'package:flutter_template/core/errors/failures.dart';
-import 'dart:convert';
-
 import 'package:flutter_template/features/auth/data/models/user_model.dart';
 
+part 'auth_remote_datasource.g.dart';
+
+@RestApi()
 abstract class AuthRemoteDataSource {
-  Future<UserModel> login(String username, String password);
-}
+  factory AuthRemoteDataSource(Dio dio, {String baseUrl}) = _AuthRemoteDataSource;
 
-class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
-  final http.Client client;
-
-  AuthRemoteDataSourceImpl({required this.client});
-
-  @override
-  Future<UserModel> login(String username, String password) async {
-    try {
-      final response = await client.post(
-        Uri.parse('${ApiConstants.baseUrl}${ApiConstants.loginEndpoint}'),
-        headers: {'Content-Type': 'application/json'},
-        body: json.encode({'username': username, 'password': password}),
-      ).timeout(ApiConstants.timeoutDuration);
-
-      if (response.statusCode == 200 || response.statusCode == 201) {
-        return UserModel.fromJson(json.decode(response.body));
-      } else {
-        throw ServerFailure('Login failed');
-      }
-    } catch (e) {
-      throw NetworkFailure('Network error: $e');
-    }
-  }
+  @POST(ApiConstants.login)
+  Future<HttpResponse<UserModel>> login(
+    @Body() Map<String, dynamic> credentials,
+  );
 }

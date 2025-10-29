@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_template/features/auth/domain/usecases/login_usecase.dart';
 import 'package:flutter_template/features/auth/presentation/bloc/auth_event.dart';
 import 'package:flutter_template/features/auth/presentation/bloc/auth_state.dart';
+import 'package:dartz/dartz.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final LoginUseCase loginUseCase;
@@ -19,11 +20,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
     final result = await loginUseCase(event.username, event.password);
 
-    if (result.isRight()) {
-      emit(AuthAuthenticated(result.right!));
-    } else {
-      emit(AuthError(result.left?.message ?? 'Login failed'));
-    }
+    result.fold(
+      (failure) => emit(AuthError(failure.message)),
+      (user) => emit(AuthAuthenticated(user)),
+    );
   }
 
   void _onLogoutRequested(

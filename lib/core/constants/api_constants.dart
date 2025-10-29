@@ -1,6 +1,8 @@
 class ApiConstants {
-  static const String baseUrl = 'https://localhost:8000';
-  static const String loginEndpoint = '/users';
-  static const String postsEndpoint = '/posts';
-  static const Duration timeoutDuration = Duration(seconds: 30);
+  static const String login = '/auth/login';
+  static const String accessToken = 'access_token';
+  static const String message = 'message';   
+  static const int defaultPageSize = 20;
+  static const String pageParam = 'page';
+  static const String xApiKey = 'X-API-Key';
 }

@@ -1,25 +1,28 @@
+// features/auth/data/models/user_model.dart
 import 'package:flutter_template/features/auth/domain/entities/user.dart';
+import 'package:json_annotation/json_annotation.dart';
 
-class UserModel extends User {
-  const UserModel({
-    required super.id,
-    required super.name,
-    required super.username,
-  });
+part 'user_model.g.dart';
 
-  factory UserModel.fromJson(Map<String, dynamic> json) {
-    return UserModel(
-      id: json['id'] ?? 0,
-      name: json['name'] ?? '',
-      username: json['username'] ?? '',
+@JsonSerializable()
+class UserModel {
+  final int id;
+  final String username;
+  
+  UserModel({required this.id, required this.username});
+  
+  factory UserModel.fromJson(Map<String, dynamic> json) => 
+      _$UserModelFromJson(json);
+
+  get accessToken => null;
+  
+  Map<String, dynamic> toJson() => _$UserModelToJson(this);
+
+  User toEntity() {
+    return User(
+      id: id,
+      username: username,
+      accessToken: accessToken,
     );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'name': name,
-      'username': username,
-    };
   }
 }
